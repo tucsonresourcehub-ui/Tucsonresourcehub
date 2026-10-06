@@ -1,1 +1,5 @@
+baseURL = "https://tucsonresourcehub.com/"
+languageCode = "en-us"
+title = "Tucson Resource Hub"
+theme = ""
 
