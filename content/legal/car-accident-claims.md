@@ -1,6 +1,6 @@
 ---
 title: "Tucson Car Accident Injury & Recovery Guide"
-description: "Steps to take after a vehicle accident in Pima County and how to secure immediate medical and financial assistance."
+description: "Steps to take after a vehicle accident in Pima County and how to secure immediate legal case evaluation."
 date: 2026-10-08
 verified: true
 verified_source: "Arizona Revised Statutes Title 28"
@@ -14,3 +14,5 @@ verified_date: "October 2026"
 
 ## Legal Rights & Compensation
 Under Arizona law, injured victims are entitled to compensation for medical expenses, lost wages, and pain and suffering if another driver was at fault.
+
+{{< accident-form >}}
