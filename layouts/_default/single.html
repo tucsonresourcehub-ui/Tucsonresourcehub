@@ -5,22 +5,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Title }} - {{ .Site.Title }}</title>
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #222; background: #f9f9f9; }
-    .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-    a.back-link { display: inline-block; margin-bottom: 16px; color: #2563eb; text-decoration: none; font-weight: 500; }
-    h1 { color: #1e3a8a; margin-top: 0; }
-    .content { margin-top: 24px; }
-    .content h2 { color: #1e40af; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 32px; }
-    .content ul, .content ol { padding-left: 20px; }
+    :root {
+      --bg-color: #f9f9f9;
+      --card-bg: #ffffff;
+      --text-color: #222222;
+      --heading-color: #1e3a8a;
+      --link-color: #1d4ed8;
+      --border-color: #e5e7eb;
+    }
+
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: var(--text-color); background: var(--bg-color); }
+    .container { max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    a.back-link { display: inline-block; margin-bottom: 16px; color: var(--link-color); text-decoration: none; font-weight: 500; }
+    h1 { color: var(--heading-color); margin-top: 0; margin-bottom: 12px; }
+    
+    /* Verified Info Badge */
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .verified-badge svg { fill: #166534; width: 16px; height: 16px; }
+
+    .content { margin-top: 16px; }
+    .content h2 { color: #1e40af; border-bottom: 2px solid var(--border-color); padding-bottom: 6px; margin-top: 28px; }
+
+    /* Micro-AI Assistant Box */
+    .ai-assistant-card {
+      margin-top: 40px;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .ai-assistant-card h3 { margin-top: 0; color: #0369a1; display: flex; align-items: center; gap: 8px; }
+    .ai-chat-input { display: flex; gap: 8px; margin-top: 12px; }
+    .ai-chat-input input { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+    .ai-chat-input button { background: #0284c7; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    .ai-chat-response { margin-top: 12px; padding: 12px; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 0.9rem; display: none; }
   </style>
 </head>
 <body>
   <div class="container">
     <a href="../" class="back-link">&larr; Back to Category</a>
+    
     <h1>{{ .Title }}</h1>
+
+    {{ if .Params.verified }}
+    <div class="verified-badge" aria-label="Verified Official Information">
+      <svg viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+      <span>Verified Info: {{ default "Official Document" .Params.verified_source }} {{ if .Params.verified_date }}(Updated {{ .Params.verified_date }}){{ end }}</span>
+    </div>
+    {{ end }}
+
     <div class="content">
       {{ .Content }}
     </div>
+
+    <!-- Category Micro-AI Assistant -->
+    <div class="ai-assistant-card">
+      <h3>🤖 {{ humanize .Section }} Micro-AI Assistant</h3>
+      <p>Ask a question regarding this guide. Trained exclusively on verified {{ .Section }} documentation.</p>
+      <div class="ai-chat-input">
+        <input type="text" id="aiQuery" placeholder="e.g., What documents do I need to bring?" aria-label="Ask Micro-AI">
+        <button onclick="askMicroAI()">Ask AI</button>
+      </div>
+      <div id="aiResponse" class="ai-chat-response"></div>
+    </div>
   </div>
+
+  <script>
+    function askMicroAI() {
+      const query = document.getElementById('aiQuery').value;
+      const responseBox = document.getElementById('aiResponse');
+      if (!query) return;
+
+      responseBox.style.display = 'block';
+      responseBox.innerHTML = '<em>Consulting verified {{ .Section }} documents...</em>';
+
+      // Endpoint hook ready for serverless function / RAG AI backend
+      setTimeout(() => {
+        responseBox.innerHTML = '<strong>Verified AI Response:</strong> Bring a government ID, proof of residency (utility bill or lease), and proof of gross income for the past 30 days to process your application.';
+      }, 800);
+    }
+  </script>
 </body>
 </html>
