@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} - {{ .Site.Title }}</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #222; background: #f9f9f9; }
+    .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    a.back-link { display: inline-block; margin-bottom: 16px; color: #2563eb; text-decoration: none; font-weight: 500; }
+    h1 { color: #1e3a8a; margin-top: 0; }
+    .content { margin-top: 24px; }
+    .content h2 { color: #1e40af; border-bottom: 2px solid #e5e7eb; padding-bottom: 6px; margin-top: 32px; }
+    .content ul, .content ol { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../" class="back-link">&larr; Back to Category</a>
+    <h1>{{ .Title }}</h1>
+    <div class="content">
+      {{ .Content }}
+    </div>
+  </div>
+</body>
+</html>
