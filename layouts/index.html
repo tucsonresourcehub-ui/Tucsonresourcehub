@@ -5,45 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Site.Title }}</title>
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #222; background: #f9f9f9; }
-    .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-    h1 { color: #1e3a8a; margin-top: 0; }
+    :root {
+      --bg-color: #f9f9f9;
+      --card-bg: #ffffff;
+      --text-color: #222222;
+      --heading-color: #1e3a8a;
+      --link-color: #1d4ed8;
+      --border-color: #e5e7eb;
+      --base-font-size: 16px;
+    }
+
+    body.high-contrast {
+      --bg-color: #000000;
+      --card-bg: #121212;
+      --text-color: #ffffff;
+      --heading-color: #ffff00;
+      --link-color: #00ffff;
+      --border-color: #ffffff;
+    }
+
+    html { font-size: var(--base-font-size); }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: var(--text-color); background: var(--bg-color); }
+    
+    /* Accessibility Top Bar */
+    .a11y-bar { background: #111827; color: #ffffff; padding: 10px 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font-size: 0.875rem; }
+    .a11y-controls { display: flex; gap: 8px; align-items: center; }
+    .a11y-btn { background: #374151; color: #ffffff; border: 1px solid #6b7280; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .a11y-btn:hover, .a11y-btn:focus { background: #2563eb; outline: 2px solid #ffffff; }
+
+    .container { max-width: 800px; margin: 20px auto; background: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); }
+    h1 { color: var(--heading-color); margin-top: 0; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
-    .card { padding: 20px; border: 1px solid #e5e7eb; border-radius: 6px; background: #fafafa; text-decoration: none; color: inherit; transition: border-color 0.2s; }
-    .card:hover { border-color: #2563eb; }
-    .card h3 { margin: 0 0 8px 0; color: #1d4ed8; }
-    .card p { margin: 0; font-size: 0.9em; color: #4b5563; }
+    .card { padding: 20px; border: 2px solid var(--border-color); border-radius: 6px; background: var(--card-bg); text-decoration: none; color: inherit; display: block; }
+    .card:hover, .card:focus { border-color: var(--link-color); outline: 3px solid var(--link-color); }
+    .card h3 { margin: 0 0 8px 0; color: var(--link-color); }
+    .card p { margin: 0; font-size: 0.95em; }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <!-- WCAG 2.2 Accessibility Toolbar -->
+  <header role="banner">
+    <div class="a11y-bar" aria-label="Accessibility Options">
+      <span><strong>Tucson Resource Hub</strong> Access Tools:</span>
+      <div class="a11y-controls">
+        <button class="a11y-btn" onclick="toggleContrast()" aria-label="Toggle High Contrast Mode">High Contrast Mode</button>
+        <button class="a11y-btn" onclick="changeFontSize(1)" aria-label="Increase Text Size">Text +</button>
+        <button class="a11y-btn" onclick="changeFontSize(-1)" aria-label="Decrease Text Size">Text -</button>
+        <button class="a11y-btn" onclick="resetA11y()" aria-label="Reset Accessibility Settings">Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
     <h1>{{ .Site.Title }}</h1>
     <p>Free, clear, step-by-step guides for essential community resources in Tucson, Arizona.</p>
 
     <h2>Resource Categories</h2>
     <div class="grid">
-  <a href="/food/" class="card">
-    <h3>Food Assistance</h3>
-    <p>SNAP application guides, food banks, and meal programs.</p>
-  </a>
-  <a href="/housing/" class="card">
-    <h3>Housing & Shelter</h3>
-    <p>Emergency shelter, eviction prevention, and rent aid.</p>
-  </a>
-  <a href="/utilities/" class="card">
-    <h3>Utility Assistance</h3>
-    <p>TEP, Southwest Gas, and water bill payment assistance.</p>
-  </a>
-  <a href="/legal/" class="card">
-    <h3>Legal Aid & Rights</h3>
-    <p>Tenant rights, eviction defense, and legal assistance.</p>
-  </a>
-  <a href="/transportation/" class="card">
-    <h3>Transportation</h3>
-    <p>Sun Tran info, transit passes, and vehicle repair assistance.</p>
-  </a>
-</div>
+      <a href="/food/" class="card">
+        <h3>Food Assistance</h3>
+        <p>SNAP application guides, food banks, and meal programs.</p>
+      </a>
+      <a href="/housing/" class="card">
+        <h3>Housing & Shelter</h3>
+        <p>Emergency shelter, eviction prevention, and rent aid.</p>
+      </a>
+      <a href="/utilities/" class="card">
+        <h3>Utility Assistance</h3>
+        <p>TEP, Southwest Gas, and water bill payment assistance.</p>
+      </a>
+      <a href="/legal/" class="card">
+        <h3>Legal Aid & Rights</h3>
+        <p>Tenant rights, eviction defense, and legal intake.</p>
+      </a>
+      <a href="/transportation/" class="card">
+        <h3>Transportation</h3>
+        <p>Sun Tran info, transit passes, and vehicle repair assistance.</p>
+      </a>
+    </div>
+  </main>
 
-  </div>
+  <script>
+    let currentFontSize = 16;
+
+    function toggleContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
+    function changeFontSize(delta) {
+      currentFontSize = Math.min(Math.max(currentFontSize + (delta * 2), 14), 24);
+      document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
+    }
+
+    function resetA11y() {
+      document.body.classList.remove('high-contrast');
+      currentFontSize = 16;
+      document.documentElement.style.setProperty('--base-font-size', '16px');
+    }
+  </script>
 </body>
 </html>
