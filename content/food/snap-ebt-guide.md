@@ -2,6 +2,9 @@
 title: "How to Apply for SNAP (EBT) in Tucson"
 description: "Step-by-step instructions for applying for Supplemental Nutrition Assistance Program benefits in Pima County."
 date: 2026-10-08
+verified: true
+verified_source: "Arizona DES & Pima County"
+verified_date: "October 2026"
 ---
 
 ## Overview
@@ -15,3 +18,4 @@ The Supplemental Nutrition Assistance Program (SNAP), formerly known as food sta
 1. **Online:** Apply through the [Health-e-Arizona Plus portal](https://www.healthearizonaplus.gov).
 2. **By Phone:** Call DES Customer Service at 1-855-432-7587.
 3. **In Person:** Visit a local Arizona Department of Economic Security (DES) office in Tucson.
+4. 
