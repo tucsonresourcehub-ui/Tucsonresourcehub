@@ -1,0 +1,35 @@
+<div class="lead-form-container" style="background: #f8fafc; border: 2px solid #2563eb; padding: 24px; border-radius: 8px; margin-top: 28px;">
+  <h3 style="margin-top: 0; color: #1e3a8a;">Free Tenant Rights & Legal Review</h3>
+  <p style="font-size: 0.95rem; color: #475569;">Facing eviction, deposit withholding, or landlord dispute in Tucson? Submit your details for legal evaluation.</p>
+  
+  <form name="tenant-dispute-intake" method="POST" data-netlify="true" action="/legal/tenant-rights-intake/?submitted=true">
+    <input type="hidden" name="form-name" value="tenant-dispute-intake" />
+    
+    <div style="margin-bottom: 14px;">
+      <label for="ten-name" style="display: block; font-weight: bold; margin-bottom: 4px;">Full Name *</label>
+      <input type="text" id="ten-name" name="name" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;" />
+    </div>
+
+    <div style="margin-bottom: 14px;">
+      <label for="ten-phone" style="display: block; font-weight: bold; margin-bottom: 4px;">Phone Number *</label>
+      <input type="tel" id="ten-phone" name="phone" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;" />
+    </div>
+
+    <div style="margin-bottom: 14px;">
+      <label for="ten-issue" style="display: block; font-weight: bold; margin-bottom: 4px;">Primary Issue *</label>
+      <select id="ten-issue" name="issue_type" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;">
+        <option value="Eviction Notice">Eviction Notice / Notice to Vacate</option>
+        <option value="Security Deposit">Security Deposit Dispute</option>
+        <option value="Unsafe Conditions">Unsafe Conditions / Repair Issues</option>
+        <option value="Other">Other Lease Dispute</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 18px;">
+      <label for="ten-details" style="display: block; font-weight: bold; margin-bottom: 4px;">Describe Your Situation *</label>
+      <textarea id="ten-details" name="details" rows="3" required placeholder="Include notice dates, landlord claims, or deposit amounts..." style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;"></textarea>
+    </div>
+
+    <button type="submit" style="background: #2563eb; color: #ffffff; border: none; padding: 12px 24px; font-weight: bold; font-size: 1rem; border-radius: 4px; cursor: pointer; width: 100%;">Submit For Dispute Review</button>
+  </form>
+</div>
