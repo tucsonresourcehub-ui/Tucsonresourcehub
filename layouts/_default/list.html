@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} - {{ .Site.Title }}</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #222; background: #f9f9f9; }
+    .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    a.back-link { display: inline-block; margin-bottom: 16px; color: #2563eb; text-decoration: none; font-weight: 500; }
+    h1 { color: #1e3a8a; margin-top: 0; }
+    .resource-list { list-style: none; padding: 0; margin-top: 20px; }
+    .resource-item { padding: 16px 0; border-bottom: 1px solid #e5e7eb; }
+    .resource-item h3 { margin: 0 0 6px 0; }
+    .resource-item a { color: #1d4ed8; text-decoration: none; font-size: 1.1rem; font-weight: 600; }
+    .resource-item a:hover { text-decoration: underline; }
+    .resource-item p { margin: 4px 0 0 0; color: #4b5563; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">&larr; Back to Home</a>
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+
+    <ul class="resource-list">
+      {{ range .Pages }}
+      <li class="resource-item">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{ if .Description }}
+          <p>{{ .Description }}</p>
+        {{ end }}
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</body>
+</html>
