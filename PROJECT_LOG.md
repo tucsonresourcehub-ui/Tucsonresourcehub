@@ -33,3 +33,9 @@
 - [ ] Wire Lead Qualification AI prompt into n8n/Zapier pipeline.
 - [ ] Connect live webhook routing to partner law firms.
 - [ ] 
+
+### Automated Update: 2026-10-13 20:55 UTC
+- **Activity:** Add GitHub Actions workflow for auto-updating project log
+
+This workflow automatically updates the PROJECT_LOG.md file with the latest commit details upon pushes to the main branch.
+- **Status:** Deployed successfully to GitHub & Netlify
