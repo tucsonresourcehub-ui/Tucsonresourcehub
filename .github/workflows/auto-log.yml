@@ -1,0 +1,33 @@
+name: Auto-Update Project Log
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+    update-log:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+
+        - name: Append latest commit to PROJECT_LOG.md
+          run: |
+            echo "" >> PROJECT_LOG.md
+            echo "### Automated Update: $(date -u +"%Y-%m-%d %H:%M UTC")" >> PROJECT_LOG.md
+            echo "- **Activity:** $(git log -1 --pretty=%B)" >> PROJECT_LOG.md
+            echo "- **Status:** Deployed successfully to GitHub & Netlify" >> PROJECT_LOG.md
+
+        - name: Commit and push changes
+          run: |
+            git config --global user.name "GitHub Actions Bot"
+            git config --global user.email "actions@github.com"
+            git add PROJECT_LOG.md
+            git diff --staged --quiet || (git commit -m "docs: auto-update project log [skip ci]" && git push)
+            
