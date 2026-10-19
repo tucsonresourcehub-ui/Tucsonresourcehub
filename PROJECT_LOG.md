@@ -45,3 +45,9 @@ This workflow automatically updates the PROJECT_LOG.md file with the latest comm
 
 Updated accident form for better user experience and added honeypot field for bot detection.
 - **Status:** Deployed successfully to GitHub & Netlify
+
+### Automated Update: 2026-10-19 02:13 UTC
+- **Activity:** Change form action URL in tenant form
+
+Updated form action URL to redirect to a thank you page after submission.
+- **Status:** Deployed successfully to GitHub & Netlify
