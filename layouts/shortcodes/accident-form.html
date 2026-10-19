@@ -2,37 +2,44 @@
   <h3 style="margin-top: 0; color: #1e3a8a;">Free Accident & Injury Case Review</h3>
   <p style="font-size: 0.95rem; color: #475569;">Were you involved in a crash in Pima County? Fill out this confidential form to request a free legal evaluation.</p>
   
-  <form name="car-accident-intake" method="POST" data-netlify="true" action="/legal/car-accident-claims/?submitted=true">
-    <input type="hidden" name="form-name" value="car-accident-intake" />
-    
-    <div style="margin-bottom: 14px;">
-      <label for="acc-name" style="display: block; font-weight: bold; margin-bottom: 4px;">Full Name *</label>
-      <input type="text" id="acc-name" name="name" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;" />
-    </div>
+  <form name="car-accident-intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you/" class="intake-form">
+  <!-- Hidden field required for Netlify detection -->
+  <input type="hidden" name="form-name" value="car-accident-intake" />
+  
+  <p style="display:none;">
+    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+  </p>
 
-    <div style="margin-bottom: 14px;">
-      <label for="acc-phone" style="display: block; font-weight: bold; margin-bottom: 4px;">Phone Number *</label>
-      <input type="tel" id="acc-phone" name="phone" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;" />
-    </div>
+  <div style="margin-bottom: 15px;">
+    <label for="name" style="display:block; font-weight:bold;">Full Name *</label>
+    <input type="text" id="name" name="name" required placeholder="Jane Doe" style="width: 100%; padding: 8px;" />
+  </div>
 
-    <div style="margin-bottom: 14px;">
-      <label for="acc-email" style="display: block; font-weight: bold; margin-bottom: 4px;">Email Address</label>
-      <input type="email" id="acc-email" name="email" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;" />
-    </div>
+  <div style="margin-bottom: 15px;">
+    <label for="phone" style="display:block; font-weight:bold;">Phone Number *</label>
+    <input type="tel" id="phone" name="phone" required placeholder="(520) 000-0000" style="width: 100%; padding: 8px;" />
+  </div>
 
-    <div style="margin-bottom: 14px;">
-      <label for="acc-injured" style="display: block; font-weight: bold; margin-bottom: 4px;">Were you or a passenger injured?</label>
-      <select id="acc-injured" name="injured" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;">
-        <option value="Yes">Yes, seeking medical care / injured</option>
-        <option value="No">No physical injury, vehicle damage only</option>
-      </select>
-    </div>
+  <div style="margin-bottom: 15px;">
+    <label for="email" style="display:block; font-weight:bold;">Email Address</label>
+    <input type="email" id="email" name="email" placeholder="jane@example.com" style="width: 100%; padding: 8px;" />
+  </div>
 
-    <div style="margin-bottom: 18px;">
-      <label for="acc-details" style="display: block; font-weight: bold; margin-bottom: 4px;">Brief Description of Crash & Injuries *</label>
-      <textarea id="acc-details" name="details" rows="3" required placeholder="Where did the crash happen? Mention fault, injuries, or vehicle damage..." style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box;"></textarea>
-    </div>
+  <div style="margin-bottom: 15px;">
+    <label for="injured" style="display:block; font-weight:bold;">Were you or someone involved injured?</label>
+    <select id="injured" name="injured" style="width: 100%; padding: 8px;">
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
 
-    <button type="submit" style="background: #2563eb; color: #ffffff; border: none; padding: 12px 24px; font-weight: bold; font-size: 1rem; border-radius: 4px; cursor: pointer; width: 100%;">Submit Case For Free Review</button>
+  <div style="margin-bottom: 15px;">
+    <label for="details" style="display:block; font-weight:bold;">Briefly describe what happened</label>
+    <textarea id="details" name="details" rows="4" placeholder="Accident location, dates, or injuries..." style="width: 100%; padding: 8px;"></textarea>
+  </div>
+
+  <button type="submit" style="background-color: #0056b3; color: white; padding: 12px 20px; border: none; cursor: pointer; font-weight: bold;">
+    Submit Confidential Request
+  </button>
   </form>
-</div>
+  
